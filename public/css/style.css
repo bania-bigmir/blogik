@@ -1,0 +1,90 @@
+body {
+    font-family: 'Lato';
+    padding-top: 70px;
+}
+/*===============MENU============================*/
+
+.fa-btn {
+    margin-right: 6px;
+}
+:target:before { 
+    display: block; 
+    content: " "; 
+    margin-top: -70px; 
+    height: 70px; 
+    visibility: hidden; 
+}
+/*крестик гамбургера======================================*/
+.navbar-toggle {
+    border: none;
+    background: transparent !important;
+}
+.navbar-toggle:hover {
+    background: transparent !important;
+}
+.navbar-toggle .icon-bar {
+    width: 22px;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.navbar-toggle .icon-bar:nth-of-type(2) {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 10% 10%;
+    -ms-transform-origin: 10% 10%;
+    transform-origin: 10% 10%;
+}
+.navbar-toggle .icon-bar:nth-of-type(3) {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.navbar-toggle .icon-bar:nth-of-type(4) {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 10% 90%;
+    -ms-transform-origin: 10% 90%;
+    transform-origin: 10% 90%;
+}
+.navbar-toggle.collapsed .icon-bar:nth-of-type(2) {
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+}
+.navbar-toggle.collapsed .icon-bar:nth-of-type(3) {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.navbar-toggle.collapsed .icon-bar:nth-of-type(4) {
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+}
+/*цвета*/
+.navbar-default .navbar-nav > li > ul>li[href]{
+    padding-bottom: 5px;
+}
+.navbar-default .navbar-nav > li > ul > li > a ,
+
+.navbar-default .navbar-nav > li > ul
+{
+
+
+    color: black;
+}
+
+.navbar-default .navbar-nav > li:hover,
+.navbar-default .navbar-nav > li > ul>li>a:hover,
+.navbar-default .navbar-nav > li > ul>li:hover{
+
+    background-color: #999999;
+}
+.dropdown-menu .divider{
+    margin: 0;
+}
+.dropdown-menu{
+
+    padding: 0;
+}
+/*================================*/
