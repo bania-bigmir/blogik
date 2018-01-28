@@ -1,16 +1,23 @@
+
+<!-- Recent posts -->
 @if($articles)
-    <div class="well">
-        <h3>Останні пости</h3>
+    <h5 class="widget-title">Останні пости</h5>
+    <ul class="popular-news clearfix">
         @foreach($articles as $article)
-            <h4>{{$article->title}}</h4>
+            <li>
             @if($article->img)
+                    <div class="thumb">
                 <img src="{{asset(env('THEME'))}}/images/articles/{{$article->img->mini}}" class="img-rounded"
                      alt="{{$article->img->mini}}" title="{{$article->img->mini}}"/>
+                    </div>
             @endif
-            <p>{{$article->created_at->format('d-m-Y')}}</p>
-            <a href="{{route('articles.show',['alias' =>$article->alias])}}" class="btn btn-default">Читати
-                більше...</a>
-        @endforeach
+                <div class="text">
 
-    </div>
+            <h6><a href="{{route('articles.show',['alias' =>$article->alias])}}" >{{ $article->title }}</a></h6>
+                    <a class="post_meta">{{$article->created_at->format('d-m-Y')}}</a>
+
+                </div>
+            </li>
+        @endforeach
+    </ul>
 @endif

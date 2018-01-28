@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: home
- * Date: 12.12.2017
- * Time: 11:42
- */
+
 
 namespace Train\Repositories;
 
@@ -16,13 +11,16 @@ abstract class Repository
     protected $model = FALSE;
 
 
-    public function get($select = '*', $take = false,$pagination = false)
+    public function get($select = '*', $take = false,$pagination = false,$where=false)
     {
         $builder = $this->model->select($select);
 
         if ($take) {
             $builder->take($take);
 
+        }
+        if($where){
+            $builder->where($where[0],$where[1]);
         }
         if($pagination){
             return $this->check($builder->paginate(Config::get('settings.paginate')));
@@ -31,6 +29,7 @@ abstract class Repository
 
         return $this->check($builder->get());
     }
+
     protected function check($result){
         if ($result->isEmpty()){
             return FALSE;
@@ -47,6 +46,10 @@ abstract class Repository
 
         });
 
+        return $result;
+    }
+    public function one($alias,$attr=[]){
+        $result=$this->model->where('alias',$alias)->first();
         return $result;
     }
 }

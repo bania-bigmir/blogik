@@ -15,11 +15,12 @@ class ChangeComentsTable extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             //
-            $table->integer('article_id')->unsigned()->default(1);
-             $table->foreign('article_id')->references('id')->on('articles');
-             
-             $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned()->default(1)->change();
+             $table->foreign('article_id')->references('id')->on('articles')->change();
+
+             $table->integer('user_id')->unsigned()->nullable()->change();
              $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 

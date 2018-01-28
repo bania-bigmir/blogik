@@ -25,3 +25,18 @@ Route::resource('articles','ArticlesController',[
     ]
 
 ]);
+Route::get('cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'articlesCat']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::resource('comment','CommentController',['only'=>['store']]);
+Route::resource('galereja','GalleryController',[
+
+    'parameters' => [
+
+        'galereja' => 'alias'
+
+    ]
+]);

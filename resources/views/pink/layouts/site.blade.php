@@ -1,67 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-        <!-- Styles -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>{{ $title or 'Tamila' }}</title>
 
-        <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
-        <style>
-        header {
-        width: 100%;
-        display: block; /* Для старых браузеров */
-        height: 124px; /* Высота шапки */
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        }
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : ''}}">
+    <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : ''}}">
 
-        </style>
-    </head>
-    <body id="app-layout">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12"
-<header><h1>New teacher blog</h1></header>
-        </div>
-        </div>
-    </div>
-        <!-- START MENU -->
-@yield('navigation')
-        <!-- END MENU -->
-        <!-- START CONTENT -->
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/bootstrap.css')}}">
 
-        <!-- END CONTENT -->
-        <!-- START SIDEBAR -->
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/style.css')}}">
+
+    <!-- Colors -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/colors/color1.css')}}" id="colors">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/responsive.css')}}">
+
+    <!-- Animation Style -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/animate.css')}}">
+
+    <!-- Favicon and touch icons  -->
+    <link href="{{ url('iSeo/icon/apple-touch-icon-48-precomposed.png')}}" rel="apple-touch-icon-precomposed"
+          sizes="48x48">
+    <link href="{{ url('iSeo/icon/apple-touch-icon-32-precomposed.png')}}" rel="apple-touch-icon-precomposed">
+    <link href="{{ url('iSeo/icon/favicon.png')}}" rel="shortcut icon">
+
+    <!--[if lt IE 9]>
+    <script src="{{ url('iSeo/javascript/html5shiv.js')}}"></script>
+    <script src="{{ url('iSeo/javascript/respond.min.js')}}"></script>
+    <![endif]-->
+</head>
+<body class="header_sticky">
+<section class="loading-overlay">
+     <div class="Loading-Page">
+         <h2 class="loader">Loading</h2>
+     </div>
+ </section>
+<!-- Boxed -->
+<div class="boxed">
+
+    <!-- Header -->
+    <header id="header" class="header clearfix">
         <div class="container">
-        <div class="row">
-            <div   class="col-xs-12 col-sm-12 col-lg-8 col-md-9 ">
-            @yield('content')
-                    <!--main-->
-                </div>
-            <div  class="col-xs-6 col-md-3 col-sm-12 ">
-                <!-- sidebar -->
-                @yield('sidebar')
+            <div class="row">
+                <div class="header-wrap clearfix">
+                    <div class="col-md-3">
+
+                        <div class="btn-menu">
+                            <span></span>
+                        </div><!-- //mobile menu button -->
+                    </div>
+                    <div class="col-md-12">
+                        @yield('navigation')
+                    </div>
+                </div><!-- /.header-inner -->
+            </div><!-- /.row -->
+        </div>
+    </header><!-- /.header -->
+    <div class="wrap_result"></div>
+
+    <!-- Blog posts -->
+    <section class="main-content blog-posts blog-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    @yield('content')
+
+                </div><!-- /.col-md-9 -->
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="widget widget_search">
+                            <form role="search" method="get" class="search-form" action="#">
+                                <label>
+                                    <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                                </label>
+                                <input type="submit" class="search-submit" value="Search">
+                            </form>
+                        </div><!-- /.widget-search -->
 
 
+                        <div class="widget widget-recent-news">
+                            @yield('sidebar')
+
+                        </div><!-- /.widget-popular-news -->
+
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.col-md-3 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section>
+    @if(URL::full() == route('home') )
+
+        @include(env('THEME').'.feedback')
+
+    @endif
+
+    <footer class="footer">
+        <div class="footer-widgets">
+            <div class="container">
+                @yield('footer')
             </div>
         </div>
-
-    </div>
-
-        <!-- JavaScripts -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-        <script src="{{url('/js/script.js')}}"></script>
+    </footer>
 
 
+    <!-- Go Top -->
+    <a class="go-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+<!-- JavaScripts -->
+<script type="text/javascript" src="{{url('iSeo/javascript/comment-reply.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.easing.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery-waypoints.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.cookie.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.fitvids.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/parallax.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.magnific-popup.min.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.flexslider-min.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/main.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/myscripts.js')}}"></script>
+<script type="text/javascript" src="{{url('iSeo/javascript/jquery.malihu.PageScroll2id.js')}}"></script>
 
-        {{-- <script src="{{elixir('js/app.js')}}"></script> --}}
+
 </body>
 </html>

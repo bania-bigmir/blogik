@@ -5,8 +5,8 @@
         </li>
     @endif
     @if($item->hasChildren())
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $item->title }} <span class="caret"></span></a>
-            <ul class="dropdown-menu">
+        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $item->title }} </a>
+            <ul class="submenu right-sub-menu">
                 @include(env('THEME').'.customMenuItems',['items'=>$item->children()])
 
             </ul>
