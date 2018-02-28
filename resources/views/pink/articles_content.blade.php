@@ -12,7 +12,7 @@
                             <span class="day">{{$article->created_at->format('d')}}</span>
                         </li>
                         <li class="comment">
-                            {{$article->created_at->format('F')}}
+                            {{Lang::get('month.'.$article->created_at->format('m'))}}
                         </li>
                     </ul><!-- /.post-comment -->
                 </div><!-- /.feature-post -->

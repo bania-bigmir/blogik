@@ -57,7 +57,31 @@ jQuery(document).ready(function ($) {
     }
 
 
+if($('.flexslider').length){
+        $('#carousel').flexslider({
+            animation:"slide",
+            controlNav:false,
+            animationLoop:false,
+            slideshow:false,
+            itemWidth:200,
+            itemMargin:5,
+            asNavFor:'#slider',
+            easing:'easeInElastic'
 
+        });
+    $('#slider').flexslider({
+        animation:"slide",
+        controlNav:false,
+        animationLoop:false,
+        slideshow:false,
+        smoothHeight:true,
+        sync:'#carousel',
+        easing:'easeInElastic',
+        prevText: "",
+        nextText:""
+    });
+
+}
 
 
 
@@ -73,5 +97,5 @@ function slowScroll() {
     $('html, body').animate({
        scrollTop: $(params).offset().top-($('#header').height()+5)
     }, 1000);
-    // var params='#'+event.newURL.split('#')[1];
+
 }

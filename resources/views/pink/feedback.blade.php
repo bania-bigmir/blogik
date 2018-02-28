@@ -34,34 +34,38 @@
             </div>
 
             <div class="col-md-5">
+
                 <div class="title-box" id="feedback">
-                <div class="title-box" id="feedback">
-                    <div class="title">Contact Form</div>
+                    <div class="title">Форма зворотнього зв'язку</div>
                 </div>
 
                 <form id="contactform" class="flat-contact-form style2 bg-dark height-small" method="post"
-                      action="./contact/contact-process.php" novalidate="novalidate">
+                      action="{{route('store')}}" >
                     <div class="field clearfix">
                         <div class="wrap-type-input">
                             <div class="input-wrap name">
-                                <input type="text" value="" tabindex="1" placeholder="Name" name="name" id="name"
-                                       required="">
+                                <input type="text" value="" tabindex="1" placeholder="Ім'я" name="name" id="name"
+                                       required>
                             </div>
                             <div class="input-wrap email">
                                 <input type="email" value="" tabindex="2" placeholder="Email" name="email" id="email"
-                                       required="">
+                                       required>
                             </div>
                         </div>
                         <div class="textarea-wrap">
-                            <textarea class="type-input" tabindex="3" placeholder="Message" name="message"
-                                      id="message-contact" required=""></textarea>
+                            <textarea class="type-input" tabindex="3" placeholder="Повідомлення" name="text"
+                                      id="message-contact" required></textarea>
                         </div>
                     </div>
                     <div class="submit-wrap">
-                        <button class="flat-button bg-theme">Send Your Message</button>
+                        {{ csrf_field() }}
+                        <button class="flat-button bg-theme">Відправити повідомлення</button>
                     </div>
                 </form><!-- /.comment-form -->
             </div>
         </div>
     </div><!-- /.container -->
+
+
 </section>
+

@@ -8,7 +8,7 @@
 /* Smaller than standard 1200 */
 @media only screen and (max-width: 1199px) {
 	#mainnav > ul > li > a {
-		padding: 0 15px 0 15px;
+		padding: 0 10px 0 10px;
 	}
 }
 
@@ -239,7 +239,7 @@
 
 	.header .logo {
 		margin-right: 0;
-		width: 110px;
+
 		margin-top: 37px;
 	}
 

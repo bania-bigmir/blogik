@@ -28,6 +28,9 @@
 
     <!-- Animation Style -->
     <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/animate.css')}}">
+    <!-- flexSlider -->
+    <link rel="stylesheet" type="text/css" href="{{ url('iSeo/stylesheets/flexslider.css')}}">
+
 
     <!-- Favicon and touch icons  -->
     <link href="{{ url('iSeo/icon/apple-touch-icon-48-precomposed.png')}}" rel="apple-touch-icon-precomposed"
@@ -54,8 +57,13 @@
         <div class="container">
             <div class="row">
                 <div class="header-wrap clearfix">
-                    <div class="col-md-3">
 
+                    <div class="col-md-3">
+                        <div id="logo" class="logo">
+                            <a href="index.html" rel="home">
+                                <h2>Супер пупер сайт!!!</h2>
+                            </a>
+                        </div>
                         <div class="btn-menu">
                             <span></span>
                         </div><!-- //mobile menu button -->
@@ -75,28 +83,14 @@
             <div class="row">
                 <div class="col-md-8">
                     @yield('content')
-
-                </div><!-- /.col-md-9 -->
+                </div><!-- /.col-md-8 -->
                 <div class="col-md-4">
                     <div class="sidebar">
-                        <div class="widget widget_search">
-                            <form role="search" method="get" class="search-form" action="#">
-                                <label>
-                                    <input type="search" class="search-field" placeholder="Search …" value="" name="s">
-                                </label>
-                                <input type="submit" class="search-submit" value="Search">
-                            </form>
-                        </div><!-- /.widget-search -->
-
-
                         <div class="widget widget-recent-news">
                             @yield('sidebar')
-
                         </div><!-- /.widget-popular-news -->
-
-
                     </div><!-- /.sidebar -->
-                </div><!-- /.col-md-3 -->
+                </div><!-- /.col-md-4 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
     </section>
@@ -133,7 +127,6 @@
 <script type="text/javascript" src="{{url('iSeo/javascript/jquery.flexslider-min.js')}}"></script>
 <script type="text/javascript" src="{{url('iSeo/javascript/main.js')}}"></script>
 <script type="text/javascript" src="{{url('iSeo/javascript/myscripts.js')}}"></script>
-<script type="text/javascript" src="{{url('iSeo/javascript/jquery.malihu.PageScroll2id.js')}}"></script>
 
 
 </body>

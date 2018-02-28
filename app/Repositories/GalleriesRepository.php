@@ -18,6 +18,12 @@ class GalleriesRepository extends Repository
         $this->model = $galleries;
     }
 
-
+public function one($alias,$attr=[]){
+       $gallery = parent::one($alias,$attr=[]);
+    //if($gallery && $gallery->preview){
+//    $gallery->preview =json_decode( $gallery->preview);
+//}
+    return $gallery;
+}
 
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(env('THEME').'.layouts.site')
 
 @section('content')
 <div class="container">
@@ -54,9 +54,7 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
+                                
                             </div>
                         </div>
                     </form>

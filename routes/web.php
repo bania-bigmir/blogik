@@ -12,7 +12,7 @@
 */
 
 Route::resource('/','IndexController',[
-    'only'=>['index'],
+    'except' => ['create','show','edit','update'],
     'names'=>[
         'index'=>'home'
     ]
@@ -27,16 +27,26 @@ Route::resource('articles','ArticlesController',[
 ]);
 Route::get('cat/{cat_alias?}',['uses'=>'ArticlesController@index','as'=>'articlesCat']);
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+
+Route::get('/home', 'IndexController@index');
 
 Route::resource('comment','CommentController',['only'=>['store']]);
 Route::resource('galereja','GalleryController',[
 
     'parameters' => [
-
         'galereja' => 'alias'
-
     ]
 ]);
+
+Route::get('404','ErrorController@index');
+
+Route::get('login','Auth\LoginController@showLoginForm');
+
+Route::post('login','Auth\LoginController@login');
+
+Route::get('logout','Auth\LoginController@logout');
+
+
+
+

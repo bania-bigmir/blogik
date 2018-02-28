@@ -5,6 +5,8 @@ namespace Train\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Train\Message;
+
 use Train\Repositories\ArticlesRepository;
 use Train\Repositories\MenusRepository;
 
@@ -24,7 +26,7 @@ class IndexController extends SiteController
      */
     public function index()
     {
-        //
+
         $contentIndexPage = view(env('THEME').'.home')->render();
         $this->vars = array_add($this->vars,'contentIndexPage',$contentIndexPage);
         //$articles = $this->getArticles();
@@ -51,7 +53,29 @@ class IndexController extends SiteController
      */
     public function store(Request $request)
     {
-        //
+
+
+            $this->validate($request,[
+                'name' =>'required|max:255',
+                'email' => 'required|email',
+                'text' => 'required'
+            ]);
+
+           $data =$request->all();
+
+           $message =new Message;
+
+           $message->name =$data['name'];
+        $message->email =$data['email'];
+        $message->text =$data['text'];
+        $message->read =0;
+        $result=$message->save();
+        if($result){
+            return redirect()->route('home')->with('status','Повідомлення відправлено!');
+        }
+
+
+
     }
 
     /**

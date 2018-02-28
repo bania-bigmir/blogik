@@ -13,7 +13,7 @@
             @endif
                 <div class="text">
 
-            <h6><a href="{{route('articles.show',['alias' =>$article->alias])}}" >{{ $article->title }}</a></h6>
+            <h6><a href="{{url('articles.show',['alias' =>$article->alias])}}" >{{ $article->title }}</a></h6>
                     <a class="post_meta">{{$article->created_at->format('d-m-Y')}}</a>
 
                 </div>

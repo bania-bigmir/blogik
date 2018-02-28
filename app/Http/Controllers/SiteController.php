@@ -60,6 +60,7 @@ class SiteController extends Controller
         $this->vars = array_add($this->vars,'title',$this->title);
 
         $footer = view(env('THEME').'.footer')->with('menu',$menu)->render();
+       
         $this->vars = array_add($this->vars,'footer',$footer);
 
         return   view($this->template)->with($this->vars);
@@ -92,7 +93,7 @@ class SiteController extends Controller
 
         });
 
-        // dd($mBuilder);
+        
         return $mBuilder;
     }
     

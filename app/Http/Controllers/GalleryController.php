@@ -34,15 +34,15 @@ class GalleryController extends SiteController
 
 
 
-        $content = view(env('THEME') . '.gallery_content')->with('galleries',$galleries)->render();
+        $content = view(env('THEME') . '.galleries_content')->with('galleries',$galleries)->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
         return $this->renderOutput();
     }
 
-    public function getGalleries()
+    public function getGalleries($take=false,$paginate =true)
     {
-        $galleries = $this->g_rep->get('*',false,true);
+        $galleries = $this->g_rep->get('*',$take,$paginate);
         if ($galleries){
             $galleries->load('filters');
             $galleries->load('photo');
@@ -78,9 +78,25 @@ class GalleryController extends SiteController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($alias)
     {
 
+$gallery = $this->g_rep->one($alias);
+
+        $gallery->load('photo');
+
+        $this->title=$gallery->name;
+        $this->keywords=$gallery->keywords;
+        $this->meta_desc=$gallery->meta_desc;
+
+        $galleries = $this->getGalleries(config('settings.galleries'),false);
+
+        $content = view(env('THEME').'.gallery_content')->with(['gallery'=>$gallery,'galleries' =>$galleries])->render();
+        $this->vars = array_add($this->vars,'content',$content);
+
+
+
+        return $this->renderOutput();
 
     }
 

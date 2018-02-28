@@ -2,5 +2,6 @@
 
 return [
     'home_articles_count'=>3,
-    'paginate' => 2,
+    'paginate' => 3,
+    'galleries' => 5,
 ];

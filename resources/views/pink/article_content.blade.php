@@ -11,7 +11,7 @@
                         <span class="day">{{$article->created_at->format('d')}}</span>
                     </li>
                     <li class="comment">
-                        {{$article->created_at->format('F')}}
+                        {{Lang::get('month.'.$article->created_at->format('m'))}}
                     </li>
                 </ul><!-- /.post-comment -->
             </div><!-- /.feature-post -->
@@ -96,7 +96,7 @@
                             <input id="comment_post_ID" type="hidden" name="comment_post_ID"
                                    value="{{ $article->id }}"/>
                             <input id="comment_parent" type="hidden" name="comment_parent" value="0"/>
-                            <button id="submit" class="comment-submit">Post comment</button>
+                            <button id="submit" class="comment-submit">Коментувати</button>
                         </p>
                     </form>
                 </div><!-- /.comment-respond -->

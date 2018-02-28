@@ -25,6 +25,7 @@ class ArticlesController extends SiteController
         $this->keywords='string';
 
         $articles = $this->getArticles($cat_alias);
+       // $articles=$this->load()
         $content = view(env('THEME').'.articles_content')->with('articles',$articles)->render();
         $this->vars = array_add($this->vars,'content',$content);
 

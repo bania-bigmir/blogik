@@ -11,7 +11,7 @@
             <div class="comment-text">
                 <div class="comment-metadata">
                     <h5><a href="#">{{ $item->user->name or $item->name }}</a></h5>
-                    <span class="date">{{ is_object($item->created_at) ? $item->created_at->format('d F, Y у H:i') : ''}}</span>
+                    <span class="date">{{ is_object($item->created_at) ? ($item->created_at->format('d').' '.Lang::get('month.'.$item->created_at->format('m')).$item->created_at->format(', Y у H:i')) : ''}}</span>
                 </div><!-- .comment-metadata -->
                 <div class="comment-content">
                     {{ $item->text }}
