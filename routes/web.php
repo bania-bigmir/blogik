@@ -48,9 +48,6 @@ Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 
 
-Route::get('admin', function (){
-    dd('admin');
-})->middleware('auth.basic');
 
 
 
