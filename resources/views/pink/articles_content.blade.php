@@ -4,8 +4,8 @@
             <article class="post clearfix">
                 <div class="featured-post">
                     @if($article->img)
-                        <img src="{{asset(env('THEME'))}}/images/articles/{{$article->img->max}}"
-                             alt="{{$article->img->mini}}" title="{{$article->title}}"/>
+                        <img src="/{{$article->img}}"
+                             alt="{{$article->img}}" title="{{$article->title}}"/>
                     @endif
                     <ul class="post-comment">
                         <li class="date">

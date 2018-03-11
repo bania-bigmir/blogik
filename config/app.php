@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC+2',
+    'timezone' => 'Europe/Kiev',
 
     /*
     |--------------------------------------------------------------------------
@@ -180,6 +180,9 @@ return [
         
         //helper
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        
+        //sleepingOwl
+        SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
 
         //laravel-menu
         Lavary\Menu\ServiceProvider::class,

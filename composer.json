@@ -10,6 +10,7 @@
         "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "^2.6",
         "laravel/framework": "5.3.*",
+        "laravelrus/sleepingowl": "4.*@dev",
         "lavary/laravel-menu": "^1.7"
     },
     "require-dev": {
