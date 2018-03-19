@@ -15,10 +15,10 @@ class ChangeArticlesTable extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             //
-            $table->integer('user_id')->unsigned()->default(1)->change();
+            $table->integer('user_id')->unsigned()->default(1);
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('category_id')->unsigned()->default(1)->change();
+            $table->integer('category_id')->unsigned()->default(1);
              $table->foreign('category_id')->references('id')->on('categories');
         });
     }

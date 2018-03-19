@@ -4,18 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/IndexController.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/config/sleeping_owl.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Gallery.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/navigation.blade.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/Controller.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Photo.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Menu.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/customMenuItems.blade.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Providers/AdminSectionsServiceProvider.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Filter.php</file>
             <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/Auth/LoginController.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/articles.blade.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/articles_content.blade.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Gallery.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Gallery.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Message.php</file>
             <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Article.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/Controller.php</file>
         </group>
     </open-files>
 </project-private>

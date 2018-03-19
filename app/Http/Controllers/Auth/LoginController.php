@@ -46,7 +46,7 @@ class LoginController extends Controller
     {
        
         if(\Illuminate\Support\Facades\Auth::check()){
-            dd('showLoginForm');
+            
             redirect('/');
         }
         return view(env('THEME').'.login')->with('title','Вхід на сайт');

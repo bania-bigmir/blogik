@@ -30,7 +30,7 @@ class IndexController extends SiteController
         $contentIndexPage = view(env('THEME').'.home')->render();
         $this->vars = array_add($this->vars,'contentIndexPage',$contentIndexPage);
         //$articles = $this->getArticles();
-//dd($articles);
+
         
         return $this->renderOutput();
     }

@@ -3,6 +3,7 @@
 namespace Train\Admin\Sections;
 
 
+use AdminTemplate;
 use AdminColumn;
 use AdminDisplay;
 use AdminForm;
@@ -45,7 +46,7 @@ class Article extends Section implements Initializable
     public function initialize()
     {
         // Добавление пункта меню 
-        $this->addToNavigation($priority = 500)->setTitle('Статті');         
+        $this->addToNavigation($priority = 500)->setTitle('Статті')->setIcon('fa fa-user');         
     }
     
  
@@ -55,12 +56,11 @@ class Article extends Section implements Initializable
      */
     public function onDisplay()
     {
+        
          $display = AdminDisplay::datatables();
         $display->with('user','category','comments');
-//        $display->setFilters(
-//            AdminDisplayFilter::related('created_at')->setModel(Country::class)
-//        );
-       // dd($display);
+
+
         $display->setColumns([
             AdminColumn::link('title','Заголовок'),
             AdminColumn::text('desc','Опис'),
@@ -82,19 +82,22 @@ class Article extends Section implements Initializable
      */
     public function onEdit($id)
     {
+       
         $form = AdminForm::panel()
             ->addBody([
+                            
                 AdminFormElement::text('title', 'Заголовок')->required(),
                 AdminFormElement::date('created_at', 'Створено')->required()->setFormat('Y-m-d H:i:s'),
                 AdminFormElement::text('desc', 'Опис')->required(),
-                AdminFormElement::wysiwyg('text', 'Text'),
-                AdminFormElement::text('keywords','Ключові слова'),
-                AdminFormElement::text('meta_desc','Мета опис'), 
-                AdminFormElement::text('alias','Alias'),
-                AdminFormElement::image('img', 'Зображення'),
-                AdminFormElement::select('category_id', 'Категорія', \Train\Category::class)->setDisplay('title'),
+                AdminFormElement::wysiwyg('text', 'Text')->required(),
+                AdminFormElement::text('keywords','Ключові слова')->required(),
+                AdminFormElement::text('meta_desc','Мета опис')->required(), 
+                AdminFormElement::text('alias','Alias')->required(),
+                AdminFormElement::upload('upload_image', 'Зображення')->required(),
+
+                AdminFormElement::select('category_id', 'Категорія', \Train\Category::class)->setDisplay('title')->required(),
                 
-            ]);
+            ])->setHtmlAttribute('enctype', 'multipart/form-data');
 
         return $form;
     }
