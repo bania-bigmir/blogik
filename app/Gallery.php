@@ -17,4 +17,6 @@ class Gallery extends Model
         return $this->belongsToMany(Filter::class,'gallery_filters');
     }
 
+
+    
 }

@@ -29,5 +29,6 @@ class AdminSectionsServiceProvider extends ServiceProvider {
 
         parent::boot($admin);
     }
+    
 
 }

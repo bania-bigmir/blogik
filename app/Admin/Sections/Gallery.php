@@ -9,6 +9,7 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use AdminSection;
+use  \Train\ChromePhp;
 
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
@@ -89,11 +90,11 @@ class Gallery extends Section implements Initializable
                 
                 AdminFormElement::text('description', 'Опис')->required(),
                 AdminFormElement::text('alias','Alias')->required(),
-                AdminFormElement::multiselect('filters.name','Фільтри'),
+                AdminFormElement::multiselect('filters.name','Фільтри',\Train\Gallery::class),
                 AdminFormElement::text('keywords','Ключові слова')->required(),
                 AdminFormElement::text('meta_desc','Мета опис')->required(), 
                 
-                AdminFormElement::images('photo.url', 'Зображення')->required(),
+                AdminFormElement::images('photo.url', 'Зображення')->storeAsJson(),
 
                 
                 
