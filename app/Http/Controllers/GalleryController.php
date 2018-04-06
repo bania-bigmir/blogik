@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Train\Gallery;
 use Train\Repositories\GalleriesRepository;
 
+class GalleryController extends SiteController {
+    
+    
 
-class GalleryController extends SiteController
-{
-    public function __construct(GalleriesRepository $g_rep)
-    {
+    public function __construct(GalleriesRepository $g_rep) {
 
         parent::__construct(new \Train\Repositories\MenusRepository(new \Train\Menu), new \Train\Repositories\ArticlesRepository(new \Train\Article));
         $this->g_rep = $g_rep;
@@ -23,8 +23,8 @@ class GalleryController extends SiteController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
+
 
         $this->title = 'Галерея';
         $this->meta_desc = 'string';
@@ -34,19 +34,34 @@ class GalleryController extends SiteController
 
 
 
-        $content = view(env('THEME') . '.galleries_content')->with('galleries',$galleries)->render();
+        $photos = $this->g_rep->photos();
+        
+
+        $content = view(env('THEME') . '.galleries_content')->with(['galleries' => $galleries, 'photos' => $photos])->render();
         $this->vars = array_add($this->vars, 'content', $content);
 
         return $this->renderOutput();
     }
+    
+    
+        public function filter($filter) {
+         
+        $galleries = $this->g_rep->filter($filter);        
+    $photos = $this->g_rep->photos();
+    
+    $content = view(env('THEME') . '.galleries_content')->with(['galleries' => $galleries, 'photos' => $photos])->render();
+        $this->vars = array_add($this->vars, 'content', $content);
 
-    public function getGalleries($take=false,$paginate =true)
-    {
-        $galleries = $this->g_rep->get('*',$take,$paginate);
-        if ($galleries){
+        return $this->renderOutput();
+    
+    
+    
+    }
+
+    public function getGalleries($take = false, $paginate = true,$where=false) {
+        $galleries = $this->g_rep->get('*', $take, $paginate,$where);
+        if ($galleries) {
             $galleries->load('filters');
-            $galleries->load('photo');
-
         }
         return $galleries;
     }
@@ -56,8 +71,7 @@ class GalleryController extends SiteController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -67,8 +81,7 @@ class GalleryController extends SiteController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -78,36 +91,35 @@ class GalleryController extends SiteController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($alias)
-    {
+    public function show($alias) {
 
-$gallery = $this->g_rep->one($alias);
+        $gallery = $this->g_rep->one($alias);
 
-        $gallery->load('photo');
 
-        $this->title=$gallery->name;
-        $this->keywords=$gallery->keywords;
-        $this->meta_desc=$gallery->meta_desc;
 
-        $galleries = $this->getGalleries(config('settings.galleries'),false);
+        $this->title = $gallery->name;
+        $this->keywords = $gallery->keywords;
+        $this->meta_desc = $gallery->meta_desc;
 
-        $content = view(env('THEME').'.gallery_content')->with(['gallery'=>$gallery,'galleries' =>$galleries])->render();
-        $this->vars = array_add($this->vars,'content',$content);
+        $galleries = $this->getGalleries(config('settings.galleries'), false);
+
+        $content = view(env('THEME') . '.gallery_content')->with(['gallery' => $gallery, 'galleries' => $galleries])->render();
+        $this->vars = array_add($this->vars, 'content', $content);
 
 
 
         return $this->renderOutput();
-
     }
 
+
+    
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -118,8 +130,7 @@ $gallery = $this->g_rep->one($alias);
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -129,8 +140,8 @@ $gallery = $this->g_rep->one($alias);
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

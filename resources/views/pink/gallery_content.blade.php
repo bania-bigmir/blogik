@@ -3,31 +3,32 @@
     <p>{{$gallery->description}}</p>
     <div id="slider" class="flexslider">
         <ul class="slides">
-    @foreach($gallery->photo as $photo)
+            
+    @foreach($gallery->photos as $photo)
 
-        @if($photo->active)
+        
 
-            <li data-thumb="{{asset('images/galleries')}}/{{$gallery->alias}}/{{$photo->url}}">
-                    <img src="{{asset('images/galleries')}}/{{$gallery->alias}}/{{$photo->url}}" alt="{{ $photo->name }}"/>
+            <li data-thumb="{{asset($photo)}}">
+                    <img src="{{asset($photo)}}"/>
 
             </li>
 
-        @endif
+        @
     @endforeach
         </ul>
     </div>
     <div id="carousel" class="flexslider">
     <ul class="slides">
-    @foreach($gallery->photo as $photo)
+    @foreach($gallery->photos as $photo)
 
-        @if($photo->active)
+        
 
-            <li data-thumb="{{asset('images/galleries')}}/{{$gallery->alias}}/{{$photo->url}}">
-                <img src="{{asset('images/galleries')}}/{{$gallery->alias}}/{{$photo->url}}" alt="{{ $photo->name }}"/>
+            <li data-thumb="{{asset($photo)}}">
+                <img src="{{asset($photo)}}" alt="{{ $photo }}"/>
 
             </li>
 
-        @endif
+       
     @endforeach
     </ul>
     </div>

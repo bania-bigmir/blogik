@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Filter.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Gallery.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Article.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Gallery.php</file>
-            <file>file:/C:/OpenServer/domains/trainee.local/app/Admin/Sections/Article.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/IndexController.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/home.blade.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/rightBar.blade.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/resources/views/pink/layouts/site.blade.php</file>
+            <file>file:/C:/OpenServer/domains/trainee.local/app/Http/Controllers/GalleryController.php</file>
         </group>
     </open-files>
 </project-private>

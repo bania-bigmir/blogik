@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotoTable extends Migration
+class CreateIndexTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePhotoTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('index', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('url')->unique();
-            $table->integer('gallery_id')->unsigned();
-            $table->boolean('active');
+            $table->text('title');            
+            $table->text('text');            
             $table->timestamps();
-            $table->foreign('gallery_id')->references('id')->on('galleries');
         });
     }
 
@@ -31,6 +28,6 @@ class CreatePhotoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('index');
     }
 }

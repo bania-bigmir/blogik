@@ -46,7 +46,7 @@ class Article extends Section implements Initializable
     public function initialize()
     {
         // Добавление пункта меню 
-        $this->addToNavigation($priority = 500)->setTitle('Статті')->setIcon('fa fa-user');         
+        $this->addToNavigation($priority = 500)->setTitle('Статті')->setIcon('fa fa-pencil');         
     }
     
  
@@ -69,7 +69,7 @@ class Article extends Section implements Initializable
             AdminColumn::text('alias','Alias'),
             AdminColumn::text('keywords','Ключові слова'),            
             AdminColumn::text('meta_desc','Мета опис'),
-            AdminColumn::datetime('created_at','Створено')->setFormat('Y-m-d H:i:s'),           
+            AdminColumn::datetime('created_at','Створено')->setFormat('d-m-Y H:i:s'),           
         ])->paginate(5);
         
         return $display;
@@ -87,13 +87,13 @@ class Article extends Section implements Initializable
             ->addBody([
                             
                 AdminFormElement::text('title', 'Заголовок')->required(),
-                AdminFormElement::date('created_at', 'Створено')->required()->setFormat('Y-m-d H:i:s'),
+                AdminFormElement::date('created_at', 'Створено')->required()->setFormat('d-m-Y H:i:s'),
                 AdminFormElement::text('desc', 'Опис')->required(),
                 AdminFormElement::wysiwyg('text', 'Text')->required(),
                 AdminFormElement::text('keywords','Ключові слова')->required(),
                 AdminFormElement::text('meta_desc','Мета опис')->required(), 
                 AdminFormElement::text('alias','Alias')->required(),
-                AdminFormElement::upload('upload_image', 'Зображення')->required(),
+                AdminFormElement::upload('upload_image', 'Зображення'),
 
                 AdminFormElement::select('category_id', 'Категорія', \Train\Category::class)->setDisplay('title')->required(),
                 

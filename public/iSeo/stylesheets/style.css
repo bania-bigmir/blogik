@@ -906,6 +906,7 @@ h4 { font-size: 14px; line-height: 18px; }
 }
 
 #mainnav-mobi ul > li > a {
+    display: block;
    	text-decoration: none;
    	height: 50px;
    	line-height: 50px;
@@ -2948,6 +2949,9 @@ ul.submenu.right-sub-menu>li{
     margin-right:10px;
 }
 
+p>img{
+    margin:5px 5px 0 5px;
+}
 
     
 	

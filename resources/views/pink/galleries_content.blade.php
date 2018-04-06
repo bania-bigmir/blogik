@@ -1,11 +1,12 @@
 <div class="post-wrap">
     @if($galleries)
-        @foreach($galleries as $gallery)
+        @foreach($galleries as $key => $gallery)
+
 
             @if($gallery->active)
                 <div class="flat-team list  has-image">
                     <div class="team-image">
-                        <img src="{{ asset('images/galleries/'.$gallery->alias.'/'.$gallery->preview) }}"
+                        <img src="{{ asset($photos[$key][0]) }}"
                              alt="{{ $gallery->name }}" style="width:275px;height: 242px">
                     </div>
 
@@ -17,7 +18,7 @@
 
                         @foreach($gallery->filters  as  $filter)
 
-                            <a href="{{ $filter['name'] }}">{{ $filter['name'] }}</a>,&nbsp;
+                            <a href="{{url('galereja/filter/'.$filter['name']) }}">{{ $filter['name'] }}</a>&nbsp;
                         @endforeach
 
 
@@ -36,7 +37,7 @@
                     @if($galleries->currentPage() !== 1 )
                         <li class="prev">
                         @if($galleries->currentPage() == 2)
-                                <a href="{{ asset('galereja') }}"><i
+                                <a href="{{ str_replace('?page=2','',URL::current()) }}"><i
                                             class="fa fa-angle-left fa-4x"></i></a>
                         @else
                             <a href="{{ $galleries->url($galleries->currentPage() - 1) }}"><i
@@ -49,7 +50,7 @@
                             <li class="active disabled">{{ $i }}</li>
                         @else
                             @if($i==1)
-                            <li><a href="{{ asset('galereja') }}">{{$i}}</a></li>
+                            <li><a href="{{ str_replace('?page=2','',URL::current())}}">{{$i}}</a></li>
                                 @else
                                     <li><a href="{{ $galleries->url($i) }}">{{$i}}</a></li>
                                 @endif

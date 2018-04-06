@@ -17,6 +17,7 @@ class AdminSectionsServiceProvider extends ServiceProvider {
         \Train\Gallery::class => 'Train\Admin\Sections\Gallery',
         \Train\Filter::class => 'Train\Admin\Sections\Filter',
         \Train\Message::class => 'Train\Admin\Sections\Message',
+        \Train\Index::class => 'Train\Admin\Sections\Index',
     ];
 
     /**

@@ -34,10 +34,12 @@ Route::get('/home', 'IndexController@index');
 Route::resource('comment','CommentController',['only'=>['store']]);
 Route::resource('galereja','GalleryController',[
 
+    'except' => ['create','store','edit','update','destroy'],
     'parameters' => [
         'galereja' => 'alias'
     ]
 ]);
+Route::get('galereja/filter/{filter}','GalleryController@filter');
 
 Route::get('404','ErrorController@index');
 

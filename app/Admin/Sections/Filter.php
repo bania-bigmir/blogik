@@ -2,9 +2,18 @@
 
 namespace Train\Admin\Sections;
 
+use AdminTemplate;
+use AdminColumn;
+use AdminColumnEditable;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
+use AdminSection;
+use \Train\ChromePhp;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
+use SleepingOwl\Admin\Contracts\Initializable;
 
 /**
  * Class Filter
@@ -13,7 +22,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Filter extends Section
+class Filter extends Section implements Initializable
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -31,13 +40,25 @@ class Filter extends Section
      * @var string
      */
     protected $alias;
+    
+    public function initialize() {
+        // Добавление пункта меню 
+        $this->addToNavigation($priority = 500)->setTitle('Фільтри')->setIcon('fa fa-filter');
+    }
 
     /**
      * @return DisplayInterface
      */
     public function onDisplay()
     {
-        // remove if unused
+        $display = AdminDisplay::datatables();
+        $display->setColumns([
+            AdminColumn::text('name', 'Назва'),
+            AdminColumn::datetime('created_at','Створено')->setFormat('Y-m-d H:i:s'),
+            
+            ])->paginate(10);
+
+        return $display;
     }
 
     /**
@@ -47,7 +68,12 @@ class Filter extends Section
      */
     public function onEdit($id)
     {
-        // remove if unused
+         $form = AdminForm::panel()
+                        ->addBody([
+                            AdminFormElement::text('name', 'Назва')->required(),
+                            ]);
+         return $form;
+        
     }
 
     /**

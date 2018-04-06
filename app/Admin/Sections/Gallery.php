@@ -9,8 +9,7 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use AdminSection;
-use  \Train\ChromePhp;
-
+use \Train\ChromePhp;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -23,8 +22,8 @@ use SleepingOwl\Admin\Contracts\Initializable;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Gallery extends Section implements Initializable
-{
+class Gallery extends Section implements Initializable {
+
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
      *
@@ -41,34 +40,30 @@ class Gallery extends Section implements Initializable
      * @var string
      */
     protected $alias;
-    
-    public function initialize()
-    {
+
+    public function initialize() {
         // Добавление пункта меню 
-        $this->addToNavigation($priority = 500)->setTitle('Галереї')->setIcon('fa fa-pencil');         
+        $this->addToNavigation($priority = 500)->setTitle('Галереї')->setIcon('fa fa-camera-retro');
     }
 
     /**
      * @return DisplayInterface
      */
-    public function onDisplay()
-    {
+    public function onDisplay() {
         $display = AdminDisplay::datatables();
-        $display->with('photo','filters');
+        $display->with('filters');
 
-        
+
         $display->setColumns([
-            AdminColumn::text('name','Назва'),
-            AdminColumn::text('description','Опис'),
-            AdminColumn::text('alias','Alias'),
+            AdminColumn::text('name', 'Назва'),
+            AdminColumn::text('description', 'Опис'),
+            AdminColumn::text('alias', 'Alias'),
             AdminColumn::image('preview', 'Прев\'ю'),
-            AdminColumnEditable::checkbox('active','Так', 'Ні')->setLabel('Опубліковано'), 
-            AdminColumn::lists('filters.name','Фільтри'),
-            AdminColumn::text('keywords','Ключові слова'),            
-            AdminColumn::text('meta_desc','Мета опис'),
-            AdminColumn::datetime('created_at','Створено')->setFormat('Y-m-d H:i:s'),           
+            AdminColumnEditable::checkbox('active', 'Так', 'Ні')->setLabel('Опубліковано'),
+            AdminColumn::lists('filters.name', 'Фільтри'),
+            AdminColumn::datetime('created_at', 'Створено')->setFormat('Y-m-d H:i:s'),
         ])->paginate(8);
-        
+
         return $display;
     }
 
@@ -77,28 +72,17 @@ class Gallery extends Section implements Initializable
      *
      * @return FormInterface
      */
-    public function onEdit($id)
-    {
-        
-       // dd($this->model->photo()->pluck('id'));
-        
-        
-      $form = AdminForm::panel()
-            ->addBody([
-                            
-                AdminFormElement::text('name', 'Заголовок')->required(),
-                
-                AdminFormElement::text('description', 'Опис')->required(),
-                AdminFormElement::text('alias','Alias')->required(),
-                AdminFormElement::multiselect('filters.name','Фільтри',\Train\Gallery::class),
-                AdminFormElement::text('keywords','Ключові слова')->required(),
-                AdminFormElement::text('meta_desc','Мета опис')->required(), 
-                
-                AdminFormElement::images('photo.url', 'Зображення')->storeAsJson(),
-
-                
-                
-            ])->setHtmlAttribute('enctype', 'multipart/form-data');
+    public function onEdit($id) {
+        $form = AdminForm::panel()
+                        ->addBody([
+                            AdminFormElement::text('name', 'Заголовок')->required(),
+                            AdminFormElement::text('description', 'Опис')->required(),
+                         AdminFormElement::text('alias', 'Alias'),
+                            AdminFormElement::multiselect('filters', 'Фільтри', \Train\Filter::class)->setDisplay('name'),
+                            AdminFormElement::images('photos', 'Зображення')->setUploadPath(function(\Illuminate\Http\UploadedFile $file) {
+                                        return 'images/galleries'; 
+                                    })->storeAsJson(),
+                        ])->setHtmlAttribute('enctype', 'multipart/form-data');
 
         return $form;
     }
@@ -106,24 +90,22 @@ class Gallery extends Section implements Initializable
     /**
      * @return FormInterface
      */
-    public function onCreate()
-    {
+    public function onCreate() {
         return $this->onEdit(null);
     }
 
     /**
      * @return void
      */
-    public function onDelete($id)
-    {
+    public function onDelete($id) {
         // remove if unused
     }
 
     /**
      * @return void
      */
-    public function onRestore($id)
-    {
+    public function onRestore($id) {
         // remove if unused
     }
+
 }

@@ -44,7 +44,7 @@ class Comment extends Section implements Initializable
     public function initialize()
     {
         // Добавление пункта меню 
-        $this->addToNavigation($priority = 501)->setTitle('Коментарі'); 
+        $this->addToNavigation($priority = 501)->setTitle('Коментарі')->setIcon('fa fa-comment'); 
                 
     }
 

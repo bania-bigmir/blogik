@@ -9,20 +9,19 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use AdminSection;
-
+use \Train\ChromePhp;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 use SleepingOwl\Admin\Contracts\Initializable;
-
 /**
- * Class Message
+ * Class Index
  *
- * @property \Train\Message $model
+ * @property \Index $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Message extends Section implements Initializable
+class Index extends Section implements Initializable
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -34,19 +33,22 @@ class Message extends Section implements Initializable
     /**
      * @var string
      */
-    protected $title;
+    protected $title='Головна';
 
     /**
      * @var string
      */
     protected $alias;
     
-public function initialize()
+    /**
+     * Initialize class.
+     */
+    public function initialize()
     {
         // Добавление пункта меню 
-        $this->addToNavigation($priority = 500)->setTitle('Повідомлення')->setIcon('fa fa-envelope');         
+        $this->addToNavigation($priority = 500)->setTitle('Головна')->setIcon('fa fa-eye');         
     }
-    
+
     /**
      * @return DisplayInterface
      */
@@ -54,15 +56,10 @@ public function initialize()
     {
         $display = AdminDisplay::datatables();
         $display->setColumns([
-            AdminColumn::text('name','Ім\'я'),
-            AdminColumn::email('email', 'Email'),
-            AdminColumn::text('text','Повідомлення'),
-            AdminColumnEditable::checkbox('read','Так', 'Ні')->setLabel('Прочитано'),
-            
-            AdminColumn::datetime('created_at','Створено')->setFormat('Y-m-d H:i:s'),           
-        ])->paginate(5);
-       
-       $display->getColumns()->getControlColumn()->setEditable(false); //удаляем значек редактирования
+        AdminColumn::text('title', 'Заголовок'),
+            AdminColumn::text('text','Текст'),
+            AdminColumn::datetime('updated_at', 'Оновлено')->setFormat('d-m-Y H:i'),
+            ]);
         return $display;
     }
 
@@ -73,11 +70,21 @@ public function initialize()
      */
     public function onEdit($id)
     {
-        // remove if unused
+        $form = AdminForm::panel()
+            ->addBody([
+                 AdminFormElement::text('title', 'Заголовок')->required(),
+                 AdminFormElement::wysiwyg('text', 'Text')->required(),
+                ]);
+        return $form;
     }
 
- 
-
+    /**
+     * @return FormInterface
+     */
+    public function onCreate()
+    {
+        return $this->onEdit(null);
+    }
 
     /**
      * @return void
@@ -94,9 +101,4 @@ public function initialize()
     {
         // remove if unused
     }
-
-
-    
-    
-
 }
